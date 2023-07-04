@@ -8,6 +8,7 @@ from staking_deposit.utils.validation import (
     normalize_input_list,
     validate_int_range,
     validate_password_strength,
+    validate_ether_amount_range
 )
 
 
@@ -45,6 +46,25 @@ def test_validate_int_range(num: Any, low: int, high: int, valid: bool) -> None:
         with pytest.raises(ValidationError):
             validate_int_range(num, low, high)
 
+@pytest.mark.parametrize(
+    'num, valid',
+    [
+        (2, True),
+        (0, False),
+        (-1, False),
+        (32, True),
+        (1, True),
+        (32.1, False),
+        ('0', False),
+        ('a', False),
+    ]
+)
+def test_validate_ether_amount_range(num: Any, valid: bool) -> None:
+    if valid:
+        validate_ether_amount_range(num)
+    else:
+        with pytest.raises(ValidationError):
+            validate_ether_amount_range(num)
 
 @pytest.mark.parametrize(
     'input, result',

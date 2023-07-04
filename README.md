@@ -147,6 +147,7 @@ You can use `new-mnemonic --help` to see all arguments. Note that if there are m
 | -------- | -------- | -------- |
 | `--num_validators`  | Non-negative integer | The number of signing keys you want to generate. Note that the child key(s) are generated via the same master key. |
 | `--mnemonic_language` | String. Options: `简体中文`, `繁體中文`, `český jazyk`, `English`, `Italiano`, `한국어`, `Português`, `Español`. Default to `English` | The language of the mnemonic word list |
+| `--amount` | Non-negative integer between 1-32. 32 by default. | The ether amount to sign deposits per validator. |
 | `--folder` | String. Pointing to `./validator_keys` by default | The folder path for the keystore(s) and deposit(s) |
 | `--chain` | String. `mainnet` by default | The chain setting for the signing domain. |
 | `--execution_address` (or `--eth1_withdrawal_address`) | String. Eth1 address in hexadecimal encoded form | If this field is set and valid, the given Eth1 address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [ERC-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
@@ -188,6 +189,7 @@ You can use `bls-to-execution-change --help` to see all arguments. Note that if 
 | `--chain` | String. `mainnet` by default | The chain setting for the signing domain. |
 | `--mnemonic` | String. mnemonic split by space.  | The mnemonic you used to create withdrawal credentials. |
 | `--mnemonic_password` | Optional string. Empty by default. | The mnemonic password you used in your key generation. Note: It's not the keystore password. |
+| `--amount` | Non-negative integer between 1-32. 32 by default. | The ether amount to sign deposits per validator. |
 | `--validator_start_index` | Non-negative integer | The index position for the keys to start generating withdrawal credentials in [ERC-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
 | `--validator_indices` | String of integer(s) | A list of the chosen validator index number(s) as identified on the beacon chain. Split multiple items with whitespaces or commas. |
 | `--bls_withdrawal_credentials_list` | String of hexstring(s). | A list of the old BLS withdrawal credentials of the given validator(s). It is for confirming you are using the correct keys. Split multiple items with whitespaces or commas. |
@@ -236,11 +238,11 @@ or
 You can also run the tool with optional arguments:
 
 ```sh
-./deposit.sh new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+./deposit.sh new-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ```sh
-./deposit.sh existing-mnemonic --num_validators=<NUM_VALIDATORS> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+./deposit.sh existing-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ###### Language Argument
@@ -303,11 +305,11 @@ python3 ./staking_deposit/deposit.py existing-mnemonic
 You can also run the tool with optional arguments:
 
 ```sh
-python3 ./staking_deposit/deposit.py new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+python3 ./staking_deposit/deposit.py new-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ```sh
-python3 ./staking_deposit/deposit.py existing-mnemonic --num_validators=<NUM_VALIDATORS> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+python3 ./staking_deposit/deposit.py existing-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ###### Language Argument
@@ -387,11 +389,11 @@ deposit.exe existing-mnemonic
 You can also run the tool with optional arguments:
 
 ```sh
-deposit.exe new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+deposit.exe new-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ```sh
-deposit.exe existing-mnemonic --num_validators=<NUM_VALIDATORS> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+deposit.exe existing-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ###### Language Argument
@@ -450,11 +452,11 @@ or
 You can also run the tool with optional arguments:
 
 ```sh
-./deposit.sh new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+./deposit.sh new-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ```sh
-./deposit.sh existing-mnemonic --num_validators=<NUM_VALIDATORS> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+./deposit.sh existing-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ###### Language Argument
@@ -515,11 +517,11 @@ python .\staking_deposit\deposit.py existing-mnemonic
 You can also run the tool with optional arguments:
 
 ```cmd
-python .\staking_deposit\deposit.py new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+python .\staking_deposit\deposit.py new-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --mnemonic_language=english --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ```cmd
-python .\staking_deposit\deposit.pyexisting-mnemonic --num_validators=<NUM_VALIDATORS> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
+python .\staking_deposit\deposit.pyexisting-mnemonic --num_validators=<NUM_VALIDATORS> --amount=<AMOUNT> --validator_start_index=<START_INDEX> --chain=<CHAIN_NAME> --folder=<YOUR_FOLDER_PATH>
 ```
 
 ###### Language Argument

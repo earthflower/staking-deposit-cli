@@ -4,6 +4,9 @@
             "help": "The number of new validator keys you want to generate (you can always generate more later)",
             "prompt": "Please choose how many new validators you wish to run"
         },
+        "amount": {
+            "help": "Ether amount you want to sign between 1-32"
+        },
         "folder": {
             "help": "The folder path for the keystore(s) and deposit(s). Pointing to `./validator_keys` by default."
         },
