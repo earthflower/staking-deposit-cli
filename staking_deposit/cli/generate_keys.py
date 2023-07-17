@@ -4,10 +4,11 @@ from typing import (
     Any,
     Callable,
 )
+from web3 import Web3
 
 from eth_typing import HexAddress
 from staking_deposit.credentials import (
-    CredentialList,
+    CredentialList
 )
 from staking_deposit.exceptions import ValidationError
 from staking_deposit.utils.validation import (
@@ -22,7 +23,7 @@ from staking_deposit.utils.constants import (
     MAX_DEPOSIT_AMOUNT,
     DEFAULT_VALIDATOR_KEYS_FOLDER_NAME,
 )
-from staking_deposit.utils.ascii_art import RHINO_0
+from staking_deposit.utils.ascii_art import EARTH_0
 from staking_deposit.utils.click import (
     captive_prompt_callback,
     choice_prompt_func,
@@ -37,12 +38,18 @@ from staking_deposit.settings import (
     MAINNET,
     PRATER,
     get_chain_setting,
+    ABI
 )
 
+w3 = Web3(Web3.HTTPProvider('https://rpc.ankr.com/eth_goerli'))
+
+def get_earth_node_address(validator_key: str) -> str:
+    earth_staking_controller=w3.eth.contract(address='0x433BdCEF40df5c2B908e24bF13988827c7FBd1e0', abi=ABI)
+    earth_node_address=earth_staking_controller.functions.getEarthNodeAddress('0x'+validator_key).call()
+    return earth_node_address
 
 def get_password(text: str) -> str:
     return click.prompt(text, hide_input=True, show_default=False, type=str)
-
 
 def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[..., Any]:
     '''
@@ -134,7 +141,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
     if not os.path.exists(folder):
         os.mkdir(folder)
     click.clear()
-    click.echo(RHINO_0)
+    click.echo(EARTH_0)
     click.echo(load_text(['msg_key_creation']))
     credentials = CredentialList.from_mnemonic(
         mnemonic=mnemonic,
@@ -145,11 +152,35 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
         start_index=validator_start_index,
         hex_eth1_withdrawal_address=execution_address,
     )
+    validator_keys = credentials.export_validator_keys()
+    validator_key = validator_keys[0].hex()
+    earth_node_address = get_earth_node_address(validator_key)
+    click.echo(load_text(['msg_earth_node']) + earth_node_address)
+    credentials = CredentialList.from_mnemonic(
+        mnemonic=mnemonic,
+        mnemonic_password=mnemonic_password,
+        num_keys=num_validators,
+        amounts=[3000000000],
+        chain_setting=chain_setting,
+        start_index=validator_start_index,
+        hex_eth1_withdrawal_address=earth_node_address,
+    )
     keystore_filefolders = credentials.export_keystores(password=keystore_password, folder=folder)
-    deposits_file = credentials.export_deposit_data_json(folder=folder)
+    deposits_file = credentials.export_deposit_data_json(folder=folder, num=1)
     if not credentials.verify_keystores(keystore_filefolders=keystore_filefolders, password=keystore_password):
         raise ValidationError(load_text(['err_verify_keystores']))
     if not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
     click.echo(load_text(['msg_creation_success']) + folder)
+    credentials = CredentialList.from_mnemonic(
+        mnemonic=mnemonic,
+        mnemonic_password=mnemonic_password,
+        num_keys=num_validators,
+        amounts=[29000000000],
+        chain_setting=chain_setting,
+        start_index=validator_start_index,
+        hex_eth1_withdrawal_address=earth_node_address,
+    )
+    deposits_file = credentials.export_deposit_data_json(folder=folder, num=2)
+    
     click.pause(load_text(['msg_pause']))

@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "Création de vos clés.",
         "msg_creation_success": "\nOpération terminée !\nVos clés sont disponibles ici : ",
+        "msg_depositdata": "Création de vos données de dépôt : ",
         "msg_pause": "\n\nAppuyez sur n'importe quelle touche.",
         "err_verify_keystores": "Impossible de vérifier les keystores.",
         "err_verify_deposit": "Impossible de vérifier les fichiers JSON des données de dépôt."

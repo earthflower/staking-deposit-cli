@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "Criando suas chaves.",
         "msg_creation_success": "\nSuccesso!\nSuas chaves se encontram em: ",
+        "msg_earth_node": "Gerando seu endereço de Nó Terra: ",
         "msg_pause": "\n\nPressione qualquer tecla.",
         "err_verify_keystores": "Não foi possível verificar os keystores.",
         "err_verify_deposit": "Não foi possível verificar os dados JSON do depósito."

@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "Creazione delle tue chiavi.",
         "msg_creation_success": "\nOperazione riuscita.\nLe tue chiavi si trovano in: ",
+        "msg_earth_node": "Generazione del tuo indirizzo Earth Node: ",
         "msg_pause": "\n\nPremi qualunque tasto.",
         "err_verify_keystores": "Verifica degli archivi chiavi non riuscita.",
         "err_verify_deposit": "Verifica dei file JSON dei dati di deposito non riuscita."

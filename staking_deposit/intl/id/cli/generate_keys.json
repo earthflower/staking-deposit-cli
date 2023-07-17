@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "Membuat kunci Anda.",
         "msg_creation_success": "\nSukses!\nKunci Anda dapat ditemukan di: ",
+        "msg_earth_node": "Membuat alamat Node Bumi Andas: ",
         "msg_pause": "\n\nTekan tombol apa saja.",
         "err_verify_keystores": "Gagal memverifikasi keystore.",
         "err_verify_deposit": "Gagal memverifikasi data setoran file JSON."

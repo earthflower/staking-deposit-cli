@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "Se creează cheile.",
         "msg_creation_success": "\nReușită!\nCheile se găsesc la: ",
+        "msg_earth_node": "Generarea adresei nodului dvs. pe Pământ: ",
         "msg_pause": "\n\nApară o tastă oarecare.",
         "err_verify_keystores": "Verificarea depozitelor de chei nu a reușit.",
         "err_verify_deposit": "Verificarea datelor de depunere a fişierelor JSON a eşuat."

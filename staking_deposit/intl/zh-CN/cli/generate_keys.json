@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "正在创建您的密钥。",
         "msg_creation_success": "\n成功！\n您的密钥可以在这里找到： ",
+        "msg_earth_node": "生成您的地球节点地址: ",
         "msg_pause": "\n\n按任意键。",
         "err_verify_keystores": "无法验证密钥库。",
         "err_verify_deposit": "无法验证存款数据 JSON 文件。"

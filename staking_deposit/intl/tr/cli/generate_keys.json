@@ -24,6 +24,7 @@
     "generate_keys": {
         "msg_key_creation": "Anahtarlarınız oluşturuluyor.",
         "msg_creation_success": "\nBaşarılı!\nAnahtarlarınızı burada bulabilirsiniz: ",
+        "msg_earth_node": "Dünya Düğüm adresinizi oluşturuyor: ",
         "msg_pause": "\n\nHerhangi bir tuşa basın.",
         "err_verify_keystores": "Anahtar depoları doğrulanamadı.",
         "err_verify_deposit": "Depozito JSON dosyaları doğrulanamadı."

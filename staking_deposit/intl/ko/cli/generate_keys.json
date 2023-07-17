@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "키 생성 중입니다.",
         "msg_creation_success": "\n성공!\n키를 찾을 수 있는 위치: ",
+        "msg_earth_node": "지구 노드 주소 생성 중: ",
         "msg_pause": "\n\n아무 키나 누르세요.",
         "err_verify_keystores": "키스토어를 검증하지 못했습니다.",
         "err_verify_deposit": "예치금 데이터 JSON 파일을 검증하지 못했습니다."

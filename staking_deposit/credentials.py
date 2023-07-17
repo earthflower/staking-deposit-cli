@@ -238,11 +238,17 @@ class CredentialList:
                                show_percent=False, show_pos=True) as credentials:
             return [credential.save_signing_keystore(password=password, folder=folder) for credential in credentials]
 
-    def export_deposit_data_json(self, folder: str) -> str:
+    def export_validator_keys(self) -> List[str]:
+        with click.progressbar(self.credentials, label=load_text(['msg_validatorkeys_creation']),
+                               show_percent=False, show_pos=True) as credentials:
+            validators_data = [cred.signing_pk for cred in credentials]
+        return validators_data
+
+    def export_deposit_data_json(self, folder: str, num: int) -> str:
         with click.progressbar(self.credentials, label=load_text(['msg_depositdata_creation']),
                                show_percent=False, show_pos=True) as credentials:
             deposit_data = [cred.deposit_datum_dict for cred in credentials]
-        filefolder = os.path.join(folder, 'deposit_data-%i.json' % time.time())
+        filefolder = os.path.join(folder, str(num)+'-deposit_data-%i.json' % time.time())
         with open(filefolder, 'w') as f:
             json.dump(deposit_data, f, default=lambda x: x.hex())
         if os.name == 'posix':

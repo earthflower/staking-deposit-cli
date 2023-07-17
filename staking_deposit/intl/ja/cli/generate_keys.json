@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "キーを作成しています。",
         "msg_creation_success": "\n成功しました！\nあなたのキーは次の場所で見つけることができます：",
+        "msg_earth_node": "あなたのEarthノードアドレスを生成しています: ",
         "msg_pause": "\n任意のキーを押してください。",
         "err_verify_keystores": "キーストアの確認に失敗しました。",
         "err_verify_deposit": "入金データ JSON ファイルの確認に失敗しました。"

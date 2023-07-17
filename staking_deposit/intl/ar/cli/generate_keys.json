@@ -18,6 +18,7 @@
     "generate_keys": {
         "msg_key_creation": "إنشاء مفاتيحك.",
         "msg_creation_success": "\nنجحت!\nيمكن العثور على مفاتيحك في: ",
+        "msg_earth_node": "جارٍ توليد عنوان عقدتك على الأرض: ",
         "msg_pause": "\n\nاضغط على أي مفتاح.",
         "err_verify_keystores": "فشل التحقق من متاجر المفاتيح.",
         "err_verify_deposit": "فشل التحقق من ملفات بيانات الإيداع JSON."
