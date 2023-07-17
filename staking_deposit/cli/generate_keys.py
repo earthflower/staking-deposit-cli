@@ -44,7 +44,7 @@ from staking_deposit.settings import (
 w3 = Web3(Web3.HTTPProvider('https://rpc.ankr.com/eth_goerli'))
 
 def get_earth_node_address(validator_key: str) -> str:
-    earth_staking_controller=w3.eth.contract(address='0x9a17f54D7c0300F5aD9D14B5aBEd877003CeF2c9', abi=ABI)
+    earth_staking_controller=w3.eth.contract(address='0x0190DD210DDacEA1323edBB69ca135F4a74d6b11', abi=ABI)
     earth_node_address=earth_staking_controller.functions.getEarthNodeAddress('0x'+validator_key).call()
     return earth_node_address
 
